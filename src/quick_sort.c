@@ -19,17 +19,20 @@ A[0], A[1], ..., A[n-1] をソートして昇順に書き換える関数
 */
 void quick_sort(int A[], int n){
     int i, j, pivot;
-    
-    pivot = A[n/2];
-    A[n/2] = A[0];
-    A[0] = pivot;
-    for(i = j = 1; i < n; i++){
-        if(A[i] <= pivot){
-            swap(A+i, A+j);
-            j++;
+    if(n != 0){
+        pivot = A[n/2];
+        A[n/2] = A[0];
+        A[0] = pivot;
+        for(i = j = 1; i < n; i++){
+            if(A[i] <= pivot){
+                swap(A+i, A+j);
+                j++;
+            }
         }
+    swap(A,A+j-1);
+    quick_sort(A,j-1);
+    quick_sort(A+j,n-j);
     }
-    
 }
 
 int main(){
@@ -39,7 +42,6 @@ int main(){
   for(i=2;i<N;i++){
     A[i] = (long long int) A[i-1] * A[1] % N;
   }
-
   quick_sort(A, N);
   for(i=0;i<N;i++){
     if(A[i] != i) printf("ERROR %dth element is %d\n", i, A[i]);
