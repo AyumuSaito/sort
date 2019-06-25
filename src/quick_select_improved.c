@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // 素数
-#define N 2999
+#define N 28
 
 int A[N];
 
@@ -18,7 +18,7 @@ A[0], A[1], ..., A[n-1] の中でk+1番目に小さい値を返す関数
 ただし、Aの中身は書き換えてしまう。
 */
 int quick_select(int A[], int n, int k){
-  int i, j, pivot;
+  int i, j, l, pivot;
 
 // 真ん中の要素をピボットとする
   pivot = A[n/2];
@@ -30,10 +30,17 @@ int quick_select(int A[], int n, int k){
       j++;
     }
   }
+    l = j - 1;
+  for(i = 1; i < l; i++){
+      if(A[i] == pivot){
+          swap(A+i, A+l);
+          l = l - 1;
+      }
+  }
 
   if(j == k+1) return pivot;
   else if(j < k+1) return quick_select(A+j, n-j, k-j);
-  else return quick_select(A+1, j-1, k);
+  else return quick_select(A+1, l-1, k);
 }
 
 
