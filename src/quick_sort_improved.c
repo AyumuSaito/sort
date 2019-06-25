@@ -2,7 +2,6 @@
 
 // 素数
 #define N 2999
-
 int A[N];
 
 // *p と *q の値を入れ替える関数
@@ -18,6 +17,28 @@ void swap(int *p, int *q){
 A[0], A[1], ..., A[n-1] をソートして昇順に書き換える関数
 */
 void quick_sort(int A[], int n){
+    int i, j, l, pivot;
+    if(n != 0){
+        pivot = A[n/2];
+        A[n/2] = A[0];
+        A[0] = pivot;
+        for(i = j = 1; i < n; i++){
+            if(A[i] <= pivot){
+                swap(A+i, A+j);
+                j++;
+            }
+        }
+        l = j - 1;
+        for(i = 1; i < l; i++){
+            if(A[i] == pivot){
+                swap(A+i, A+l-1);
+                l = l - 1;
+            }
+        }
+        swap(A,A+j-1);
+        quick_sort(A,l);
+        quick_sort(A+j,n-j);
+    }
 }
 
 int main(){
