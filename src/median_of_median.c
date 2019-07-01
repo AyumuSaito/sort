@@ -38,11 +38,6 @@ int median(int A[], int n){
             B[i] = median(A+(5*i),5);
         }
         B[n/5] = median(A+(n-5),(n+4)%5+1);
-        //        for(j=0;j>=n/5;j++){
-        //            for(i=j+1; i <= n/5; i++){
-        //                if(B[i]<B[j]) swap(B+i, B+j);
-        //            }
-        //        }
         Isort(B,n/5+1);
         return B[n/10+1];
     }
@@ -80,5 +75,5 @@ int main(){
   }
   for(i=0;i<N;i++){
     if(quick_select(A, N, i) != i) printf("ERROR %d %d\n", i, quick_select(A, N, i));
-}
+  }
 }
