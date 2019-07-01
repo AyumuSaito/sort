@@ -23,7 +23,7 @@ void Isort(int A[], int n){
 }
 
 int median(int A[], int n){
-    int i, j, m;
+    int i, j, r;
     if(n <= 5){
         for(j=0;j>=n/2+1;j++){
             for(i=j+1; i < n; i++){
@@ -38,8 +38,9 @@ int median(int A[], int n){
             B[i] = median(A+(5*i),5);
         }
         B[n/5] = median(A+(n-5),(n+4)%5+1);
-        Isort(B,n/5+1);
-        return B[n/10+1];
+        r = n/5+1;
+        Isort(B,r);
+        return B[r/2];
     }
 }
 
