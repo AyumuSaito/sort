@@ -4,7 +4,6 @@
 #define N 2999
 
 int A[N];
-int B[N];
 // *p と *q の値を入れ替える関数
 void swap(int *p, int *q){
   int tmp;
@@ -13,16 +12,8 @@ void swap(int *p, int *q){
   *q = tmp;
 }
 
-void Isort(int A[], int n){
-    int i, j, k, z;
-    for(i = 1; i < n; i++){
-        for(j = 0; j < i && A[j] < A[i]; j++) z = A[i];
-        for(k = i; k > j; k--) A[k] = A[k-1];
-        A[j] = z;
-    }
-}
-
 int median(int A[], int n){
+    int B[N];
     int i, j, r;
     if(n <= 5){
         for(j=0;j>=n/2+1;j++){
@@ -39,8 +30,7 @@ int median(int A[], int n){
         }
         B[n/5] = median(A+(n-5),(n+4)%5+1);
         r = n/5+1;
-        Isort(B,r);
-        return B[r/2];
+        return median(B,r);
     }
 }
 
