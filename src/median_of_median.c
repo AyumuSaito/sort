@@ -29,7 +29,7 @@ int median(int A[], int n, int m){
             B[i] = median(A+(5*i),5,5);
         }
         B[n/5] = median(A+(5*(n/5)),(n+4)%5+1,5);
-        r = n/5+1;
+        r = (n+4)/5;
         return median(B,r,r);
     }
 }
