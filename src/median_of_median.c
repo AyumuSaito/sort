@@ -12,11 +12,11 @@ void swap(int *p, int *q){
   *q = tmp;
 }
 
-int median(int A[], int n){
+int median(int A[], int n, int m){
     int B[N];
     int i, j, r;
-    if(n <= 5){
-        for(j=0;j>=n/2+1;j++){
+    if(n <= m){
+        for(j=0;j<n/2+1;j++){
             for(i=j+1; i < n; i++){
                 if(A[i]<A[j]) swap(A+i, A+j);
             }
@@ -25,20 +25,20 @@ int median(int A[], int n){
     }
     
     else{
-        for(i=0; i <= n/5-1; i++){
-            B[i] = median(A+(5*i),5);
+        for(i=0; i < n/5; i++){
+            B[i] = median(A+(5*i),5,5);
         }
-        B[n/5] = median(A+(n-5),(n+4)%5+1);
+        B[n/5] = median(A+(5*(n/5)),(n+4)%5+1,5);
         r = n/5+1;
-        return median(B,r);
+        return median(B,r,r);
     }
 }
 
 int quick_select(int A[], int n, int k){
   int i, j, m, p, pivot;
-    m = median(A,n);
+    m = median(A,n,5);
     for(p=0;p<n;p++){
-        if(A[p]==m){
+        if(A[p] == m){
             pivot = A[p];
             break;
         }
