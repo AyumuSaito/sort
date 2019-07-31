@@ -33,11 +33,12 @@ int quick_select(int A[], int n, int k){
     l = j - 1;
   for(i = 1; i < l; i++){
       if(A[i] == pivot){
-          swap(A+i, A+l-1);
-          l--;
+        if(A[l] != pivot) swap(A+i, A+l);
+        else i--;
+        l--;
       }
   }
-  swap(A,A+j-1);
+  swap(A,A+l);
   if(j >= k+1 && l <= k) return pivot;
   else if(j < k+1) return quick_select(A+j, n-j, k-j);
   else return quick_select(A, l, k);
